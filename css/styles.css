@@ -17,8 +17,8 @@
   --green-bg-cl: #31d0aa;
   --border-cl: #8e8f99;
   --accent-bg-cl: #e7e9fc;
-  --backdrop-bg-cl: #FCFCFC
-  --backdrop-cl: rgba(46, 47, 66, 0.4);
+  --modal-bg-cl: #FCFCFC;
+  --backdrop-bg-cl: rgba(46, 47, 66, 0.4);
 
   /* logo-color */
   --primary-logo-cl: #4d5ae5;
@@ -594,24 +594,33 @@ body {
   bottom: 0;
   left: 0;
 
-  background-color: var(--backdrop-cl);
-
+  background-color: var(--backdrop-bg-cl);
 }
 .modal {
   position: absolute;
-  top: calc(50% - 204px);
-  left: calc(50% - 288px);
+  top: 50%;
+  left: 50%;
+  /* top: calc(50% - 204px);
+  left: calc(50% - 288px); */
+  transform: translate(-50%, -50%);
 
   width: 408px;
   min-height: 576px;
 
   border-radius: 4px;
 
-  background-color: var(--backdrop-bg-cl);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);;
+  background-color: var(--modal-bg-cl);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 
+    0px 2px 1px rgba(0, 0, 0, 0.2);
 
-
+  
 }
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  } 
+
 .modal-btn {
   position: absolute;
   top: 24px;
@@ -620,16 +629,15 @@ body {
   align-items: center;
   justify-content: center;
 
+  fill: #000000;
+
   width: 24px;
   height: 24px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: var(--accent-bg-cl);
-
-  fill: #000000;
-
-
 }
-.modal-icon {
 
+.modal-icon {
+  /* fill: #000000; */
 }
