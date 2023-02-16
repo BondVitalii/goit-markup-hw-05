@@ -17,7 +17,7 @@
   --green-bg-cl: #31d0aa;
   --border-cl: #8e8f99;
   --accent-bg-cl: #e7e9fc;
-  --modal-bg-cl: #FCFCFC;
+  --modal-bg-cl: #fcfcfc;
   --backdrop-bg-cl: rgba(46, 47, 66, 0.4);
 
   /* logo-color */
@@ -31,6 +31,9 @@
   /* card-set */
   --ident: 24px;
   --items: 3;
+
+  /* animation time */
+  --transit: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*======= Reset style =======*/
@@ -56,14 +59,6 @@ img {
 }
 .list {
   list-style: none;
-}
-.card-set {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ident);
-}
-.card-item {
-  flex-basis: calc((100%- var(--ident) * (var(--items)-1)) / var(--items));
 }
 
 /*########## Basic style ##########*/
@@ -159,6 +154,31 @@ body {
   height: 100%;
 
   border-radius: 50%;
+
+  transition: background-color var(--transit);
+}
+
+.card-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ident);
+}
+.card-item {
+  flex-basis: calc((100%- var(--ident) * (var(--items)-1)) / var(--items));
+}
+
+.nav-link.current::after {
+  content: '';
+  position: absolute;
+
+  left: 0;
+  bottom: -1px;
+
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+
+  background-color: var(--pressed-txt-cl);
 }
 
 /*########## Individual Styles ##########*/
@@ -197,20 +217,6 @@ body {
 .nav-item:not(:last-child) {
   margin-right: 40px;
 }
-
-.nav-link.current::after {
-  content: '';
-  position: absolute;
-
-  bottom: -1px;
-
-  width: 100%;
-  height: 4px;
-  border-radius: 2px;
-
-  display: block;
-  background-color: var(--pressed-txt-cl);
-}
 .nav-link {
   position: relative;
 
@@ -225,10 +231,19 @@ body {
   /* font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em; */
+
+  /* transition: color var(--transit); */
 }
 .nav-link:hover,
 .nav-link:focus {
   color: var(--pressed-txt-cl);
+}
+/* .header-nav a {
+  transition: color var(--transit);
+} */
+.nav-list a,
+.contact-list a {
+  transition: color var(--transit);
 }
 
 /*contact*/
@@ -299,6 +314,8 @@ body {
   color: var(--basic-white-txt-cl);
   background-color: var(--primary-bg-cl);
   /* border: none; */
+
+  transition: background-color var(--transit);
 }
 .hero-btn:hover,
 .hero-btn:focus {
@@ -416,6 +433,8 @@ body {
 
   border: 1px solid var(--border-cl);
   border-radius: 4px;
+
+  transition: fill var(--transit), border-color var(--transit);
 }
 .customers-link:focus,
 .customers-link:hover {
@@ -495,6 +514,7 @@ body {
 .filter-btn:hover,
 .filter-btn:focus {
   color: var(--basic-white-txt-cl);
+  
   background-color: var(--pressed-bg-cl);
 
   border-color: transparent;
@@ -512,8 +532,6 @@ body {
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
-
-
 .portfolio-img-box {
   position: relative;
 }
@@ -529,9 +547,8 @@ body {
 
   color: var(--cloud-light-txt-cl);
   background-color: var(--primary-bg-cl);
-  opacity: 0.7;
+  opacity: 1;
 }
-
 
 /* .portfolio-link {
   display: inline-block;
@@ -551,7 +568,6 @@ body {
   opacity: 0;
 } */
 
-
 /* .portfolio-card-overlay::before {
   display: block;
   position: absolute;
@@ -567,7 +583,6 @@ body {
   background-color: var(--primary-bg-cl);
   opacity: 0.7;
 } */
-
 
 .portfolio-card-descr {
   padding: 32px 16px;
@@ -596,13 +611,18 @@ body {
 
   background-color: var(--backdrop-bg-cl);
 }
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
+
+  transform: translate(-50%, -50%);
   /* top: calc(50% - 204px);
   left: calc(50% - 288px); */
-  transform: translate(-50%, -50%);
 
   width: 408px;
   min-height: 576px;
@@ -610,17 +630,9 @@ body {
   border-radius: 4px;
 
   background-color: var(--modal-bg-cl);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
-
-  
 }
-
-.backdrop.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  } 
-
 .modal-btn {
   position: absolute;
   top: 24px;
@@ -636,8 +648,16 @@ body {
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: var(--accent-bg-cl);
+
+  transition: background-color var(--transit), border-color var(--transit),
+    fill var(--transit);
 }
 
+.modal-btn:focus,
+.modal-btn:hover {
+  background-color: var(--pressed-bg-cl);
+  fill: var(--basic-white-txt-cl);
+}
 .modal-icon {
   /* fill: #000000; */
 }
