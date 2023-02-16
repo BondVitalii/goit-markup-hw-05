@@ -510,11 +510,14 @@ body {
 
   color: var(--primary-txt-cl);
   background-color: var(--cloud-light-bg-cl);
+
+  transition: color var(--transit), background-color var(--transit),
+    border-color var(--transit), box-shadow var(--transit);
 }
 .filter-btn:hover,
 .filter-btn:focus {
   color: var(--basic-white-txt-cl);
-  
+
   background-color: var(--pressed-bg-cl);
 
   border-color: transparent;
@@ -525,6 +528,8 @@ body {
 /*card*/
 .portfolio-item {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
+
+  transition: box-shadow var(--transit);
 }
 .portfolio-item:hover,
 .portfolio-item:focus {
@@ -534,6 +539,7 @@ body {
 
 .portfolio-img-box {
   position: relative;
+  overflow: hidden;
 }
 .portfolio-card-overlay {
   position: absolute;
@@ -547,7 +553,15 @@ body {
 
   color: var(--cloud-light-txt-cl);
   background-color: var(--primary-bg-cl);
-  opacity: 1;
+
+  /* opacity: 1; */
+
+  transform: translateY(100%);
+  transition: transform var(--transit);
+}
+
+.portfolio-item:hover .portfolio-card-overlay {
+  transform: translateY(0);
 }
 
 /* .portfolio-link {
@@ -610,19 +624,26 @@ body {
   left: 0;
 
   background-color: var(--backdrop-bg-cl);
+
+  transition: opacity var(--transit), visibility var(--transit);
 }
 .backdrop.is-hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
+  transition-delay: 100ms;
 }
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
 
-  transform: translate(-50%, -50%);
   /* top: calc(50% - 204px);
   left: calc(50% - 288px); */
+
+  transform: translate(-50%, -50%);
+  transition-delay: 200ms;
+  transition: transform var(--transit), opacity var(--transit);
 
   width: 408px;
   min-height: 576px;
@@ -633,6 +654,11 @@ body {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
 }
+.backdrop.is-hidden .modal {
+  opacity: 0;
+  /* transform: translate(-50%, -100%); */
+}
+
 .modal-btn {
   position: absolute;
   top: 24px;
@@ -652,7 +678,6 @@ body {
   transition: background-color var(--transit), border-color var(--transit),
     fill var(--transit);
 }
-
 .modal-btn:focus,
 .modal-btn:hover {
   background-color: var(--pressed-bg-cl);
