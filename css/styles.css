@@ -80,7 +80,7 @@ body {
   margin-left: auto;
   margin-right: auto;
 
-  /*для визуального эфекта время работы*/
+  /*для визуального эфекта во время работы*/
   /* outline: 1px solid red; */
 }
 
@@ -238,9 +238,6 @@ body {
 .nav-link:focus {
   color: var(--pressed-txt-cl);
 }
-/* .header-nav a {
-  transition: color var(--transit);
-} */
 .nav-list a,
 .contact-list a {
   transition: color var(--transit);
@@ -564,40 +561,6 @@ body {
   transform: translateY(0);
 }
 
-/* .portfolio-link {
-  display: inline-block;
-} */
-
-/* Репета */
-/* .portfolio-img-over:hover::before {
-  opacity: 1;
-}
-.portfolio-img-over::before {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 100%;
-
-  background-color: var(--primary-bg-cl);
-  opacity: 0;
-} */
-
-/* .portfolio-card-overlay::before {
-  display: block;
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  margin: 0;
-  
-  width: 100%;
-  height: 100%;
-
-  color: var(--cloud-light-txt-cl);
-  background-color: var(--primary-bg-cl);
-  opacity: 0.7;
-} */
-
 .portfolio-card-descr {
   padding: 32px 16px;
   border-right: 1px solid var(--accent-txt-cl);
@@ -635,13 +598,13 @@ body {
 }
 .modal {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  /* top: 50%;
+  left: 50%; */
+  top: calc(50% - 288px);
+  left: calc(50% - 204px);
 
-  /* top: calc(50% - 204px);
-  left: calc(50% - 288px); */
-
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
+  transform: scaleX(1);
   transition-delay: 200ms;
   transition: transform var(--transit), opacity var(--transit);
 
@@ -656,9 +619,9 @@ body {
 }
 .backdrop.is-hidden .modal {
   opacity: 0;
+  transform: scaleX(0);
   /* transform: translate(-50%, -100%); */
 }
-
 .modal-btn {
   position: absolute;
   top: 24px;
